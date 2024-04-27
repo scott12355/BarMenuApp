@@ -10,7 +10,7 @@ public class SampleDataService
 
 		var result = new List<SampleItem>();
 
-		for (var i = 0; i < 40; i++)
+		for (var i = 0; i < 10; i++)
 		{
 			result.Add(new SampleItem
 			{
