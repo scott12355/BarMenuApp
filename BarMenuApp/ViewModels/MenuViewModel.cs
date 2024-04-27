@@ -1,4 +1,6 @@
-﻿namespace BarMenuApp.ViewModels;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+
+namespace BarMenuApp.ViewModels;
 
 public partial class MenuViewModel : BaseViewModel
 {
@@ -8,7 +10,7 @@ public partial class MenuViewModel : BaseViewModel
 	bool isRefreshing;
 
 	[ObservableProperty]
-	ObservableCollection<SampleItem>? items;
+	ObservableCollection<Drink>? items;
 
 	public MenuViewModel(SampleDataService service)
 	{
@@ -48,7 +50,8 @@ public partial class MenuViewModel : BaseViewModel
 
 	public async Task LoadDataAsync()
 	{
-		Items = new ObservableCollection<SampleItem>(await dataService.GetItems());
+
+		Items = MauiProgram.db.GetDrinks().ToObservableCollection();
 	}
 
 	[RelayCommand]

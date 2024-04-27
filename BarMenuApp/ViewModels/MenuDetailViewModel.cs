@@ -4,5 +4,5 @@
 public partial class MenuDetailViewModel : BaseViewModel
 {
 	[ObservableProperty]
-	SampleItem? item;
+	Drink? item;
 }

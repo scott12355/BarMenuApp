@@ -2,6 +2,7 @@
 
 public static class MauiProgram
 {
+	public static DbAccess db;
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
@@ -14,7 +15,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		builder.Services.AddTransient<SampleDataService>();
+		db = new DbAccess(Constants.DatabasePath, true);
+        //db.InitializeDatabase();
+        builder.Services.AddTransient<SampleDataService>();
 		builder.Services.AddTransient<MenuDetailViewModel>();
 		builder.Services.AddTransient<MenuDetailPage>();
 
