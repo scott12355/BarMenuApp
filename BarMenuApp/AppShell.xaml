@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+	x:Class="BarMenuApp.AppShell"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:views="clr-namespace:BarMenuApp.Views"
+	xmlns:local="clr-namespace:BarMenuApp">
+
+	<TabBar>
+		<ShellContent
+			Title="Menu"
+			Icon="iconlistdetail.png"
+			ContentTemplate="{DataTemplate views:MenuPage}" />
+		<ShellContent
+			Title="MyDrinks"
+			Icon="iconblank.png"
+			ContentTemplate="{DataTemplate views:MyDrinksPage}" />
+	</TabBar>
+</Shell>

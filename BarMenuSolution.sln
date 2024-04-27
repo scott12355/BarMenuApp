@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarMenuApp", "BarMenuApp\BarMenuApp.csproj", "{28B634E5-F5A3-40D2-938D-B0A92384E06E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarMenuApp.Tests", "BarMenuApp.Tests\BarMenuApp.Tests.csproj", "{2A92D44D-8DA9-49D5-906D-74E92DEEC57C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28B634E5-F5A3-40D2-938D-B0A92384E06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28B634E5-F5A3-40D2-938D-B0A92384E06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28B634E5-F5A3-40D2-938D-B0A92384E06E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{28B634E5-F5A3-40D2-938D-B0A92384E06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28B634E5-F5A3-40D2-938D-B0A92384E06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28B634E5-F5A3-40D2-938D-B0A92384E06E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2A92D44D-8DA9-49D5-906D-74E92DEEC57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A92D44D-8DA9-49D5-906D-74E92DEEC57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A92D44D-8DA9-49D5-906D-74E92DEEC57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A92D44D-8DA9-49D5-906D-74E92DEEC57C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA3AFC20-9D3C-437F-85F1-AA45BA1F0E2A}
+	EndGlobalSection
+EndGlobal
