@@ -31,8 +31,21 @@ namespace BarMenuApp.Services
             using var stream = await FileSystem.OpenAppPackageFileAsync("Cocktails.csv");
             using var reader = new StreamReader(stream);
             {
-                var records = reader.ReadToEnd().Skip(1).Select(v => Drink.FromCsv(v.ToString())).ToObservableCollection();
-                await PopulateMenu((ObservableCollection<Drink>)records);
+                
+               // var records = File.ReadAllLines("Cocktails.csv").Skip(1).Select(v => Drink.FromCsv(v.ToString())).ToObservableCollection();
+                String line;
+                Drink d;
+                while((line = reader.ReadLine()) != null)
+                {
+                    string[] values = line.Split(",,");
+                    d = new Drink();
+                    d.Name = values[0];
+                    d.Description = values[1];
+                    d.Ingredients = values[2];
+                    await AddNewDrink(d);      
+                }
+               // Console.Write(records);
+                //await PopulateMenu((ObservableCollection<Drink>)records);
             }
 
             var contents = reader.ReadToEnd();

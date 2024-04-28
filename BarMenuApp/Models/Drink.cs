@@ -27,7 +27,7 @@ namespace BarMenuApp.Models
 
          public static Drink FromCsv(string csvLine)
         {
-            string[] values = csvLine.Split(',');
+            string[] values = csvLine.Split(",,");
             Drink drinkValue = new Drink();
             drinkValue.Name = Convert.ToString(values[0]);
             drinkValue.Description = Convert.ToString(values[1]);
