@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SQLite;
 using BarMenuApp.Models;
 using CsvHelper;
+using CommunityToolkit.Maui.Core.Extensions;
 
 namespace BarMenuApp.Services
 {
@@ -30,8 +31,8 @@ namespace BarMenuApp.Services
             using var stream = await FileSystem.OpenAppPackageFileAsync("Cocktails.csv");
             using var reader = new StreamReader(stream);
             {
-                var records = reader.ReadToEnd();
-               // await PopulateMenu((ObservableCollection<Drink>)records);
+                var records = reader.ReadToEnd().Skip(1).Select(v => Drink.FromCsv(v.ToString())).ToObservableCollection();
+                await PopulateMenu((ObservableCollection<Drink>)records);
             }
 
             var contents = reader.ReadToEnd();

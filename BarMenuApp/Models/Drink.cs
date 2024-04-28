@@ -19,11 +19,21 @@ namespace BarMenuApp.Models
         [MaxLength(10000)]
         public string Description { get; set; }
 
-        [MaxLength(300)]
-        public string Catagory { get; set; }
+        
+        public string Ingredients { get; set; }
 
         [MaxLength(300)]
         public string AlcholType { get; set; }
+
+         public static Drink FromCsv(string csvLine)
+        {
+            string[] values = csvLine.Split(',');
+            Drink drinkValue = new Drink();
+            drinkValue.Name = Convert.ToString(values[0]);
+            drinkValue.Description = Convert.ToString(values[1]);
+            drinkValue.Ingredients = Convert.ToString(values[2]);
+            return drinkValue;
+        }
 
 	}
 }
