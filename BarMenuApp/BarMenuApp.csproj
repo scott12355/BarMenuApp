@@ -58,6 +58,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Cocktails.csv" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
 		<PackageReference Include="CommunityToolkit.MVVM" Version="8.2.2" />
 		<PackageReference Include="CsvHelper" Version="32.0.1" />
@@ -75,9 +79,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Cocktails.csv">
+	  <MauiAsset Include="Cocktails.csv">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
+	  </MauiAsset>
 	</ItemGroup>
 
 	<PropertyGroup Label="MauiAppAccelerator">

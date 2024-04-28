@@ -25,12 +25,17 @@ namespace BarMenuApp.Services
             await conn.CreateTableAsync<Drink>();
             ObservableCollection<Drink> dataset = new ObservableCollection<Drink>();
             
-            using (var reader = new StreamReader("C:\\Users\\Scott\\source\\repos\\BarMenuSolution\\BarMenuApp\\Cocktails.csv"))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+
+
+            using var stream = await FileSystem.OpenAppPackageFileAsync("Cocktails.csv");
+            using var reader = new StreamReader(stream);
             {
-                var records = csv.GetRecords<Drink>();
-                await PopulateMenu((ObservableCollection<Drink>)records);
+                var records = reader.ReadToEnd();
+               // await PopulateMenu((ObservableCollection<Drink>)records);
             }
+
+            var contents = reader.ReadToEnd();
+            Console.WriteLine(contents);
 
         }
 
