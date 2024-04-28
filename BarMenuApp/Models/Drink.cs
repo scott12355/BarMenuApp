@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BarMenuApp.Models
 {
-	[SQLite.Table("Drinks")]
+	[SQLite.Table("drink")]
     public class Drink
     {
         [PrimaryKey, AutoIncrement, SQLite.Column("_id")]
@@ -18,6 +18,12 @@ namespace BarMenuApp.Models
 
         [MaxLength(10000)]
         public string Description { get; set; }
+
+        [MaxLength(300)]
+        public string Catagory { get; set; }
+
+        [MaxLength(300)]
+        public string AlcholType { get; set; }
 
 	}
 }

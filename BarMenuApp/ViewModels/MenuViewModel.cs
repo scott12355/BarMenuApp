@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 
+
 namespace BarMenuApp.ViewModels;
 
 public partial class MenuViewModel : BaseViewModel
 {
-	readonly SampleDataService dataService;
 
 	[ObservableProperty]
 	bool isRefreshing;
@@ -12,9 +12,9 @@ public partial class MenuViewModel : BaseViewModel
 	[ObservableProperty]
 	ObservableCollection<Drink>? items;
 
-	public MenuViewModel(SampleDataService service)
+	public MenuViewModel()
 	{
-		dataService = service;
+
 	}
 
 	[RelayCommand]
@@ -32,27 +32,13 @@ public partial class MenuViewModel : BaseViewModel
 		}
 	}
 
-	[RelayCommand]
-	public async Task LoadMore()
-	{
-		if (Items is null)
-		{
-			return;
-		}
-
-		var moreItems = await dataService.GetItems();
-
-		foreach (var item in moreItems)
-		{
-			Items.Add(item);
-		}
-	}
-
 	public async Task LoadDataAsync()
 	{
 
-		Items = MauiProgram.db.GetDrinks().ToObservableCollection();
+		List<Drink> x = await App.MenuRepo.GetAllDrinks();
+		Items = x.ToObservableCollection();
 	}
+
 
 	[RelayCommand]
 	private async Task GoToDetails(SampleItem item)

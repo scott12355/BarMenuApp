@@ -6,7 +6,7 @@
 			 x:Class="BarMenuApp.Views.MenuPage"
 			 x:DataType="vm:MenuViewModel">
 	<RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshingCommand}">
-		<CollectionView ItemsSource="{Binding Items}" RemainingItemsThreshold="10" RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+		<CollectionView ItemsSource="{Binding Items}" >
 			<CollectionView.ItemTemplate>
 				<DataTemplate x:DataType="m:Drink">
 					<Frame Margin="4" Padding="12">
