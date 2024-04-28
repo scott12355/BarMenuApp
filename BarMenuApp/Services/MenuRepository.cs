@@ -17,45 +17,20 @@ namespace BarMenuApp.Services
         public string StatusMessage { get; set; }
 
         private SQLiteAsyncConnection conn;
+        
 
         private async Task Init()
         {
             if (conn != null)
                 return;
             conn = new SQLiteAsyncConnection(_dbPath);
-            await conn.CreateTableAsync<Drink>();
-            ObservableCollection<Drink> dataset = new ObservableCollection<Drink>();
-            
-
-
-            using var stream = await FileSystem.OpenAppPackageFileAsync("Cocktails.csv");
-            using var reader = new StreamReader(stream);
-            {
-                
-               // var records = File.ReadAllLines("Cocktails.csv").Skip(1).Select(v => Drink.FromCsv(v.ToString())).ToObservableCollection();
-                String line;
-                Drink d;
-                while((line = reader.ReadLine()) != null)
-                {
-                    string[] values = line.Split(",,");
-                    d = new Drink();
-                    d.Name = values[0];
-                    d.Description = values[1];
-                    d.Ingredients = values[2];
-                    await AddNewDrink(d);      
-                }
-               // Console.Write(records);
-                //await PopulateMenu((ObservableCollection<Drink>)records);
-            }
-
-            var contents = reader.ReadToEnd();
-            Console.WriteLine(contents);
-
+            await conn.CreateTableAsync<Drink>();            
         }
 
         public MenuRepository(string dbPath)
         {
             _dbPath = dbPath;
+            PopulateMenu();
         }
 
         public async Task AddNewDrink(Drink newDrink)
@@ -97,13 +72,27 @@ namespace BarMenuApp.Services
             return new List<Drink>();
         }
 
-        public async Task PopulateMenu(ObservableCollection<Drink> drinksDataSet)
+        public async Task<bool> PopulateMenu()
         {
             await Init();
-            foreach (Drink d in drinksDataSet)
+            using var stream = await FileSystem.OpenAppPackageFileAsync("Cocktails.csv");
+            using var reader = new StreamReader(stream);
             {
-                await AddNewDrink(d);
+                
+               // var records = File.ReadAllLines("Cocktails.csv").Skip(1).Select(v => Drink.FromCsv(v.ToString())).ToObservableCollection();
+                String line;
+                Drink d;
+                while((line = reader.ReadLine()) != null)
+                {
+                    string[] values = line.Split(",");
+                    d = new Drink();
+                    d.Name = values[0];
+                    d.Description = values[1];
+                    d.Ingredients = values[2];
+                    await AddNewDrink(d);      
+                }
             }
+            return true;
         }
     }
 }

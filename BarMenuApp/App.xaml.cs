@@ -7,8 +7,9 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
+		MenuRepo = repo;
 		MainPage = new AppShell();
 
-		MenuRepo = repo;
+
 	}
 }

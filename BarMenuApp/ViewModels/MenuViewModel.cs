@@ -34,14 +34,13 @@ public partial class MenuViewModel : BaseViewModel
 
 	public async Task LoadDataAsync()
 	{
-
 		List<Drink> x = await App.MenuRepo.GetAllDrinks();
 		Items = x.ToObservableCollection();
 	}
 
 
 	[RelayCommand]
-	private async Task GoToDetails(SampleItem item)
+	private async Task GoToDetails(Drink item)
 	{
 		await Shell.Current.GoToAsync(nameof(MenuDetailPage), true, new Dictionary<string, object>
 		{
