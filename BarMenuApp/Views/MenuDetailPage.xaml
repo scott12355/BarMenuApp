@@ -8,6 +8,8 @@
 		<VerticalStackLayout Margin="12">
 			<Label Text="{Binding Item.Name}" FontSize="Header" />
 			<Label Text="{Binding Item.Description}" FontSize="Default" />
+			<Label Text="{Binding Item.Ingredients}"/>
 		</VerticalStackLayout>
+		<Button/>
 	</ScrollView>
 </ContentPage>

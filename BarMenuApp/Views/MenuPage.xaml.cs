@@ -15,6 +15,6 @@ public partial class MenuPage : ContentPage
 	{
 		base.OnNavigatedTo(args);
 
-		await ViewModel.LoadDataAsync();
+		await ViewModel.LoadMenu();
 	}
 }

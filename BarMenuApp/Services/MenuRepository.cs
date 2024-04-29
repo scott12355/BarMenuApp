@@ -30,7 +30,7 @@ namespace BarMenuApp.Services
         public MenuRepository(string dbPath)
         {
             _dbPath = dbPath;
-            PopulateMenu();
+            //PopulateMenu();
         }
 
         public async Task AddNewDrink(Drink newDrink)
