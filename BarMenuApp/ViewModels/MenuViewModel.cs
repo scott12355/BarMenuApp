@@ -20,6 +20,8 @@ public partial class MenuViewModel : BaseViewModel
 		get { return menuItems; }
 		set { menuItems = value; }
 	}
+
+	public List<Drink>? MenuItemsList;
 	
 
 	public MenuViewModel()
@@ -61,41 +63,10 @@ public partial class MenuViewModel : BaseViewModel
 		});
 	}
 
-	public async Task LoadMenu() {
-		using var stream = await FileSystem.OpenAppPackageFileAsync("Cocktails.csv");
-            using var reader = new StreamReader(stream);
-            {
-                String line;
-                Drink d;
-                while((line = reader.ReadLine()) != null)
-                {
-					TextFieldParser parser = new TextFieldParser(new StringReader(line));
-
-					// You can also read from a file
-					// TextFieldParser parser = new TextFieldParser("mycsvfile.csv");
-
-					parser.HasFieldsEnclosedInQuotes = true;
-					parser.SetDelimiters(",");
-
-					string[] fields;
-
-					while (!parser.EndOfData)
-					{
-					    fields = parser.ReadFields();
-						
-						d = new Drink() {Name = fields[0], Description = fields[1], Ingredients=fields[2]};   
-						MenuItems.Add(d);     
- 
-					} 
-					parser.Close();
-                    // string[] values = line.Split(",");
-                    // d = new Drink();
-                    // d.Name = values[0];
-                    // d.Description = values[1];
-                    // d.Ingredients = values[2];
-                    
-                }
-            }
-		
+	public async Task LoadMenu(List<Drink> drinks) {
+		foreach (Drink d in drinks) {
+			MenuItems.Add(d);
+		}
 	}
+		
 }

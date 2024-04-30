@@ -9,7 +9,8 @@
 			<Label Text="{Binding Item.Name}" FontSize="Header" />
 			<Label Text="{Binding Item.Description}" FontSize="Default" />
 			<Label Text="{Binding Item.Ingredients}"/>
-		</VerticalStackLayout>
-		<Button/>
+            <Button Text="Press" WidthRequest="100"/>
+        </VerticalStackLayout>
 	</ScrollView>
+
 </ContentPage>
