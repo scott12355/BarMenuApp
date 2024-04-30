@@ -3,7 +3,7 @@
 public partial class MenuPage : ContentPage
 {
 	MenuViewModel ViewModel;
-	RestService restService;
+	RestDrinkMenuService restService;
 
 
 	public MenuPage(MenuViewModel viewModel)
@@ -11,15 +11,17 @@ public partial class MenuPage : ContentPage
 		InitializeComponent();
 
 		BindingContext = ViewModel = viewModel;
-		restService = new RestService();
 	}
 
 	protected override async void OnNavigatedTo(NavigatedToEventArgs args)
 	{
 		base.OnNavigatedTo(args);
-		if (ViewModel.MenuItems.Count() == 0) {
-				var x = await restService.RefreshDataAsync();
-				await ViewModel.LoadMenu(x);
+		restService = new RestDrinkMenuService();
+        var drinksFromAPI = await restService.RefreshDataAsync();
+#pragma warning disable CS8604 // Possible null reference argument.
+        if (ViewModel.MenuItems.Count() != drinksFromAPI.Count) {
+				ViewModel.LoadMenu(drinksFromAPI);
 		}
+#pragma warning restore CS8604 // Possible null reference argument.
 	}
 }

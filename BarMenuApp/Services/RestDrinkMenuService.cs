@@ -1,15 +1,16 @@
 using System.Text.Json;
 using BarMenuApp;
 using System.Web;
-public class RestService
+using Newtonsoft.Json;
+public class RestDrinkMenuService
 {
     HttpClient _client;
     JsonSerializerOptions _serializerOptions;
     
     
-    public List<Drink>? Items { get; private set; }
+    public List<Drink> Items { get; private set; }
     private string content;
-    public RestService()
+    public RestDrinkMenuService()
     {
         _client = new HttpClient();
         _serializerOptions = new JsonSerializerOptions
@@ -30,14 +31,17 @@ public class RestService
             {
                 _serializerOptions.AllowTrailingCommas = false;
                 content = await response.Content.ReadAsStringAsync();
-                Items = JsonSerializer.Deserialize<List<Drink>>(content, _serializerOptions);
+                Items = System.Text.Json.JsonSerializer.Deserialize<List<Drink>>(content, _serializerOptions);
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine(@"\tERROR {0}", ex.Message);
         }
-    
-        return Items;
+        if (Items != null)
+        {
+            return Items;
+        }
+        else { throw new Exception("No data recived from api"); }
     }
 }

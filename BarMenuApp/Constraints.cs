@@ -15,7 +15,7 @@ namespace BarMenuApp
             SQLite.SQLiteOpenFlags.SharedCache; // Enable multi-threaded database access
         public static string DatabasePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename);
 
-        public const string RestUrl = "https://retoolapi.dev/OLULz8/cocktails/1"; 
+        public const string RestUrl = "https://retoolapi.dev/OLULz8/cocktails"; 
 
     }
 

@@ -5,7 +5,7 @@ using FileSystem = Microsoft.Maui.Storage.FileSystem;
 
 namespace BarMenuApp.ViewModels;
 
-public partial class MenuViewModel : BaseViewModel
+public partial class MenuViewModel : BaseViewModel, INotifyPropertyChanged
 {
 
 	[ObservableProperty]
@@ -18,7 +18,7 @@ public partial class MenuViewModel : BaseViewModel
 	public ObservableCollection<Drink>? MenuItems
 	{
 		get { return menuItems; }
-		set { menuItems = value; }
+		set { menuItems = value; OnPropertyChanged(); }
 	}
 
 	public List<Drink>? MenuItemsList;
@@ -26,35 +26,31 @@ public partial class MenuViewModel : BaseViewModel
 
 	public MenuViewModel()
 	{
-
 		this.MenuItems = new ObservableCollection<Drink>();
-		Console.WriteLine(MenuItems);
-
 	}
 
-	[RelayCommand]
-	private async Task OnRefreshing()
-	{
-		IsRefreshing = true;
+    [RelayCommand]
+    private async Task OnRefreshing()
+    {
+        IsRefreshing = true;
 
-		try
-		{
-			await LoadDataAsync();
-		}
-		finally
-		{
-			IsRefreshing = false;
-		}
-	}
+        try
+        {
+            await LoadDataAsync();
+        }
+        finally
+        {
+            IsRefreshing = false;
+        }
+    }
 
-	public async Task LoadDataAsync()
-	{
-		//List<Drink> x = await App.MenuRepo.GetAllDrinks();
-		//Items = x.ToObservableCollection();
-	}
+    public async Task LoadDataAsync()
+    {
+        //List<Drink> x = await App.MenuRepo.GetAllDrinks();
+        //Items = x.ToObservableCollection();
+    }
 
-
-	[RelayCommand]
+    [RelayCommand]
 	private async Task GoToDetails(Drink item)
 	{
 		await Shell.Current.GoToAsync(nameof(MenuDetailPage), true, new Dictionary<string, object>
@@ -63,10 +59,9 @@ public partial class MenuViewModel : BaseViewModel
 		});
 	}
 
-	public async Task LoadMenu(List<Drink> drinks) {
-		foreach (Drink d in drinks) {
-			MenuItems.Add(d);
-		}
+	public void LoadMenu(List<Drink> drinks) {
+		MenuItems = drinks.ToObservableCollection<Drink>();
+	
 	}
 		
 }
