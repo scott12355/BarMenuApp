@@ -5,21 +5,34 @@
 			 xmlns:m="clr-namespace:BarMenuApp.Models"
 			 x:Class="BarMenuApp.Views.MenuPage"
 			 x:DataType="vm:MenuViewModel">
-	<RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshingCommand}">
-		<SearchBar Placeholder="Search items..." />
-		<CollectionView ItemsSource="{Binding MenuItems}" >
-			<CollectionView.ItemTemplate>
-				<DataTemplate x:DataType="m:Drink">
-					<Frame Margin="4" Padding="12">
-						<Frame.GestureRecognizers>
-							<TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
-						</Frame.GestureRecognizers>
-						<Label Text="{Binding Name}" FontSize="Large" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Black}}" />						
-					</Frame>
-				</DataTemplate>
-			</CollectionView.ItemTemplate>
-		</CollectionView>
+    <StackLayout>
+        <SearchBar x:Name="searchBar"
+            SearchCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuViewModel}}, Path=PerformSearch}"
+            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
 
-	</RefreshView>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshingCommand}">
+            <CollectionView ItemsSource="{Binding SearchResult}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:Drink">
+                        <Frame Margin="4" Padding="12">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding Name}" FontSize="Large" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Black}}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+
+
+
+
+        </RefreshView>
+
+    </StackLayout>
+    
 
 </ContentPage>
