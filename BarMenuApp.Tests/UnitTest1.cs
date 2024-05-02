@@ -1,4 +1,7 @@
 ﻿
+using System.Collections.ObjectModel;
+using BarMenuApp.Models;
+
 namespace BarMenuApp.Tests;
 
 public class UnitTest1
@@ -8,7 +11,7 @@ public class UnitTest1
 	public async Task Test1Async()
 	{
 		RestDrinkMenuService restService = new RestDrinkMenuService();
-		var x = await restService.RefreshDataAsync();
-		Assert.NotNull(x);
+		List<Drink> x = await restService.RefreshDataAsync();
+		Assert.True(x.Count > 10);
 	}
 }
