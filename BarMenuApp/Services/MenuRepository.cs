@@ -79,7 +79,6 @@ namespace BarMenuApp.Services
             using var reader = new StreamReader(stream);
             {
                 
-               // var records = File.ReadAllLines("Cocktails.csv").Skip(1).Select(v => Drink.FromCsv(v.ToString())).ToObservableCollection();
                 String line;
                 Drink d;
                 while((line = reader.ReadLine()) != null)

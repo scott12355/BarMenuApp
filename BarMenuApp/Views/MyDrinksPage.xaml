@@ -4,5 +4,9 @@
 			 xmlns:vm="clr-namespace:BarMenuApp.ViewModels"
 			 x:Class="BarMenuApp.Views.MyDrinksPage"
 			 x:DataType="vm:MyDrinksViewModel">
+			 
+            <CollectionView  >
+                
+            </CollectionView>
 
 </ContentPage>
