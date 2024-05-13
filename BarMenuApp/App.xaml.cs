@@ -2,12 +2,12 @@
 
 public partial class App : Application
 {
-	//public static MenuRepository MenuRepo { get; private set; }
+	public static MenuRepository MenuRepo { get; private set; }
 	public App(MenuRepository repo)
 	{
 		InitializeComponent();
 
-		//MenuRepo = repo;
+		MenuRepo = repo;
 		MainPage = new AppShell();
 
 

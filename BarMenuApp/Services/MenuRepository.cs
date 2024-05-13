@@ -72,26 +72,6 @@ namespace BarMenuApp.Services
             return new List<Drink>();
         }
 
-        public async Task<bool> PopulateMenu()
-        {
-            await Init();
-            using var stream = await FileSystem.OpenAppPackageFileAsync("Cocktails.csv");
-            using var reader = new StreamReader(stream);
-            {
-                
-                String line;
-                Drink d;
-                while((line = reader.ReadLine()) != null)
-                {
-                    string[] values = line.Split(",");
-                    d = new Drink();
-                    d.Name = values[0];
-                    d.Description = values[1];
-                    d.Ingredients = values[2];
-                    await AddNewDrink(d);      
-                }
-            }
-            return true;
-        }
+       
     }
 }

@@ -10,7 +10,7 @@
 			<Label Text="{Binding Item.Description}" FontSize="Default" />
 			<Label Text="{Binding Item.Ingredients}"/>
 			<Label Text="{Binding Item.Ingredients}"/>
-            <Button Text="Press" WidthRequest="100"/>
+            <Button Text="Add to your drinks" WidthRequest="100" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=AddDrink }"  CommandParameter="{Binding .}"/>
         </VerticalStackLayout>
 	</ScrollView>
 

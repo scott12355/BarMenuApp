@@ -6,9 +6,9 @@ namespace BarMenuApp.Tests;
 
 public class UnitTest1
 {
-	// TODO: Add some unit tests
-	[Fact]
-	public async Task Test1Async()
+    // TODO: Add some unit tests
+    [Fact]
+	public async Task TestMenuApiGetsResults()
 	{
 		RestDrinkMenuService restService = new RestDrinkMenuService();
 		List<Drink> x = await restService.RefreshDataAsync();
