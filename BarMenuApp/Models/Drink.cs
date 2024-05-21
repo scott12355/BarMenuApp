@@ -11,7 +11,7 @@ namespace BarMenuApp.Models
 	[SQLite.Table("drink")]
     public class Drink
     {
-
+        [PrimaryKey]
         public int id { get; set; }
 
 		public string? Name { get; set; }

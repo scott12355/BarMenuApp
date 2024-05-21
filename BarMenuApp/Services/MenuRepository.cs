@@ -45,7 +45,10 @@ namespace BarMenuApp.Services
                     throw new Exception("Valid name required");
 
                 // TODO: Insert the new person into the database
-                result = await conn.InsertAsync(newDrink);
+                if (conn.Table<Drink>().ToListAsync().Result.FirstOrDefault(x => x.id == newDrink.id) == null)
+                {
+                    result = await conn.InsertAsync(newDrink);
+                }
 
                 StatusMessage = string.Format("{0} record(s) added (Name: {1})", result, newDrink.Name);
             }
@@ -72,6 +75,10 @@ namespace BarMenuApp.Services
             return new List<Drink>();
         }
 
-       
+        internal async Task RemoveDrink(Drink? item)
+        {
+            await Init();
+            await conn.DeleteAsync(item);
+        }
     }
 }
