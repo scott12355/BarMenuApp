@@ -80,5 +80,11 @@ namespace BarMenuApp.Services
             await Init();
             await conn.DeleteAsync(item);
         }
+
+        internal async Task<bool> IsDrinkFavorite(Drink item)
+        {
+            await Init();
+            return conn.Table<Drink>().ToListAsync().Result.FirstOrDefault(x => x.id == item.id) != null;
+        }
     }
 }

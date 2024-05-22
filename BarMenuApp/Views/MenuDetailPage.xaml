@@ -4,15 +4,16 @@
 			 xmlns:vm="clr-namespace:BarMenuApp.ViewModels"
 			 x:Class="BarMenuApp.Views.MenuDetailPage"
 			 x:DataType="vm:MenuDetailViewModel">
-	<ScrollView>
+	<StackLayout>
 		<VerticalStackLayout Margin="12">
 			<Label Text="{Binding Item.Name}" FontSize="Header" />
 			<Label Text="{Binding Item.Description}" FontSize="Default" />
 			<Label Text="{Binding Item.Ingredients}"/>
-			<Label Text="{Binding Item.Ingredients}"/>
-            <Button Text="Favorite" WidthRequest="100" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=AddDrink }"  CommandParameter="{Binding .}"/>
-            <Button Text="Unfavorite" WidthRequest="100" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=RemoveDrink }"  CommandParameter="{Binding .}" IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=RemoveEnabled}"/>
         </VerticalStackLayout>
-	</ScrollView>
+		<HorizontalStackLayout Margin="12">
+			<Button Text="Favorite" WidthRequest="100" Margin="10,10,10,10" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=AddDrink }"  CommandParameter="{Binding .}" IsEnabled="{Binding Path=FavoriteDrinkEnabled}"/>
+			<Button Text="Unfavorite" WidthRequest="100" Margin="10,10,10,10" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=RemoveDrink }"  CommandParameter="{Binding .}" IsEnabled="{Binding Path=RemoveDrinkEnabled}"/>
+		</HorizontalStackLayout>
+	</StackLayout>
 
 </ContentPage>
