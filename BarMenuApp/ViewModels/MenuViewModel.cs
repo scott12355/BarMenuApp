@@ -63,16 +63,16 @@ public partial class MenuViewModel : BaseViewModel, INotifyPropertyChanged
 		});
 	}
 
-    [RelayCommand]
-    private async Task SearchDrinks(String name)
-    {
-		MenuItems = (ObservableCollection<Drink>?)MenuItems.Where(x => x.Name.StartsWith(name));
-    }
+    //[RelayCommand]
+  //   private async Task SearchDrinks(String name)
+  //   {
+		// MenuItems = (ObservableCollection<Drink>?)MenuItems.Where(x => x.Name.StartsWith(name));
+  //   }
 
     public ICommand PerformSearch => new Command<string>((string query) =>
     {
         query = query.ToUpper();
-        var buff = MenuItems.Where(x => x.Name.ToUpper().StartsWith(query) || x.Name.ToUpper().Contains(query));
+        var buff = MenuItems.Where(x => x.Name.ToUpper().Contains(query));
 
         if (buff.Any())
         {
@@ -83,10 +83,26 @@ public partial class MenuViewModel : BaseViewModel, INotifyPropertyChanged
         }
     });
 
+    public void Search(string query)
+    {
+	    query = query.ToUpper();
+	    var buff = MenuItems.Where(x => x.Name.ToUpper().Contains(query));
+
+	    if (buff.Any())
+	    {
+		    SearchResult = buff.ToObservableCollection<Drink>();
+	    }else
+	    {
+		    SearchResult = MenuItems;
+	    }
+    }
+
 
     public void LoadMenu(List<Drink> drinks) {
 		MenuItems = drinks.ToObservableCollection<Drink>();
         SearchResult = MenuItems;
 	}
+
+	
 		
 }
