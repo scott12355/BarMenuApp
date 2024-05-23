@@ -6,17 +6,32 @@
 			 x:Class="BarMenuApp.Views.MyDrinksPage"
 			 x:DataType="vm:MyDrinksViewModel">
 
-    <CollectionView ItemsSource="{Binding UserDrinks}" Margin="0">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="m:Drink">
-                <Frame Margin="4" Padding="12" VerticalOptions="Center">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MyDrinksViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
-                    </Frame.GestureRecognizers>
-                    <Label Text="{Binding Name}" FontSize="Large" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    
+
+	    <CollectionView ItemsSource="{Binding UserDrinks}" Margin="0">
+		    <CollectionView.ItemTemplate>
+			    <DataTemplate x:DataType="m:Drink">
+				    <SwipeView>
+					    <SwipeView.LeftItems>
+						    <SwipeItems>
+							    
+							    <SwipeItem Text="Remove"
+							               IconImageSource="delete.png"
+							               BackgroundColor="Red"
+							               Invoked="OnDeleteSwipeItemInvoked" />
+								</SwipeItems>
+					    </SwipeView.LeftItems>
+				    <Frame Margin="4" Padding="12" VerticalOptions="Center">
+					    <Frame.GestureRecognizers>
+						    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MyDrinksViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+					    </Frame.GestureRecognizers>
+					    <Label Text="{Binding Name}" FontSize="Large" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+				    </Frame>
+				    </SwipeView>
+			    </DataTemplate>
+		    </CollectionView.ItemTemplate>
+	    </CollectionView>
+    
+    
 
 </ContentPage>

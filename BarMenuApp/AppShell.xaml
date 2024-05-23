@@ -13,7 +13,7 @@
 			ContentTemplate="{DataTemplate views:MenuPage}" />
 		<ShellContent
 			Title="MyDrinks"
-			Icon="iconblank.png"
+			Icon="martiniglassicon.png"
 			ContentTemplate="{DataTemplate views:MyDrinksPage}" />
 	</TabBar>
 </Shell>

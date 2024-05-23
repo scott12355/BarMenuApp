@@ -15,6 +15,14 @@ public partial class MyDrinksPage : ContentPage
     {
         base.OnNavigatedTo(args);
         await ViewModel.LoadDataAsync();
-        
+    }
+
+    private async void OnDeleteSwipeItemInvoked(object? sender, EventArgs e)
+    {
+        SwipeItem item = (SwipeItem)sender;
+        Drink d = (Drink)item.BindingContext;
+        await App.MenuRepo.RemoveDrink(d);
+        ViewModel.UserDrinks.Remove(d);
+        //item.Close();
     }
 }
