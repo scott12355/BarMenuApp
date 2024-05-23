@@ -3,17 +3,41 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:vm="clr-namespace:BarMenuApp.ViewModels"
 			 x:Class="BarMenuApp.Views.MenuDetailPage"
-			 x:DataType="vm:MenuDetailViewModel">
-	<StackLayout>
-		<VerticalStackLayout Margin="12">
-			<Label Text="{Binding Item.Name}" FontSize="Header" />
-			<Label Text="{Binding Item.Description}" FontSize="Default" />
-			<Label Text="{Binding Item.Ingredients}"/>
-        </VerticalStackLayout>
-		<HorizontalStackLayout Margin="12">
-			<Button Text="Favorite" WidthRequest="100" Margin="10,10,10,10" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=AddDrink }"  CommandParameter="{Binding .}" IsEnabled="{Binding Path=FavoriteDrinkEnabled}"/>
-			<Button Text="Unfavorite" WidthRequest="100" Margin="10,10,10,10" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=RemoveDrink }"  CommandParameter="{Binding .}" IsEnabled="{Binding Path=RemoveDrinkEnabled}"/>
-		</HorizontalStackLayout>
-	</StackLayout>
+			 x:DataType="vm:MenuDetailViewModel"
+			 Title="{Binding Path=Item.Name}">
+	<Shell.BackButtonBehavior>
+		<BackButtonBehavior IsVisible="True"/>
+	</Shell.BackButtonBehavior>
+	<Shell.NavBarIsVisible>True</Shell.NavBarIsVisible>
+	<Shell.TabBarIsVisible>False</Shell.TabBarIsVisible>
+	
+	<Grid RowDefinitions="*,Auto,Auto,Auto" Margin="0" >
+		
+		<VerticalStackLayout Grid.Row="0" >
+			<Grid HorizontalOptions="Fill" Height="100" VerticalOptions="Start" Margin="10" Padding="10">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*"/>
+					<ColumnDefinition Width="10"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions> <RowDefinition Height="40"/></Grid.RowDefinitions>
+				<Label Grid.Column="0" Height="10" Text="{Binding Item.Name}" HorizontalOptions="Start" FontSize="Title"/>
+				<Button Grid.Column="1" Height="10" Text="Favorite" WidthRequest="100" HorizontalOptions="End" Margin="50,0,0,0" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=AddDrink }"  CommandParameter="{Binding .}" IsEnabled="{Binding Path=FavoriteDrinkEnabled}" IsVisible="{Binding Path=FavoriteDrinkEnabled}"/>
+			</Grid>
+			<Label Text="{Binding Item.Description}" FontSize="Default" Margin="10,0,10,0"/>
+			<Label Text="{Binding Item.Ingredients}" Margin="10,0,10,0"/>
+			<Frame BorderColor="{StaticResource Gray100}" Margin="0,20,0,0">
+				<Editor x:Name="NotesEditor"
+				        Placeholder="Keep notes about this drink here..."
+				        HeightRequest="10"
+				/>
+			</Frame>
+		</VerticalStackLayout>
+
+		
+		
+		<Button Grid.Row="2" Height="40" WidthRequest="100" HorizontalOptions="End" Text="Unfavorite" Margin="10,10,10,10" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuDetailViewModel}}, Path=RemoveDrink }"  CommandParameter="{Binding .}" IsEnabled="{Binding Path=RemoveDrinkEnabled}" IsVisible="{Binding Path=RemoveDrinkEnabled}"/>
+	</Grid>
+	
+	
 
 </ContentPage>

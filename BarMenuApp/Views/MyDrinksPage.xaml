@@ -6,10 +6,10 @@
 			 x:Class="BarMenuApp.Views.MyDrinksPage"
 			 x:DataType="vm:MyDrinksViewModel">
 
-    <CollectionView ItemsSource="{Binding UserDrinks}" >
+    <CollectionView ItemsSource="{Binding UserDrinks}" Margin="0">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="m:Drink">
-                <Frame Margin="4" Padding="12">
+                <Frame Margin="4" Padding="12" VerticalOptions="Center">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MyDrinksViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
                     </Frame.GestureRecognizers>
