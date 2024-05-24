@@ -50,8 +50,9 @@ public partial class MenuViewModel : BaseViewModel, INotifyPropertyChanged
 
     public async Task LoadDataAsync()
     {
-        //List<Drink> x = await App.MenuRepo.GetAllDrinks();
-        //Items = x.ToObservableCollection();
+	    RestDrinkMenuService restService = new RestDrinkMenuService();
+	    var drinksFromAPI = await restService.RefreshDataAsync();
+	    LoadMenu(drinksFromAPI);
     }
 
     [RelayCommand]
@@ -63,11 +64,7 @@ public partial class MenuViewModel : BaseViewModel, INotifyPropertyChanged
 		});
 	}
 
-    //[RelayCommand]
-  //   private async Task SearchDrinks(String name)
-  //   {
-		// MenuItems = (ObservableCollection<Drink>?)MenuItems.Where(x => x.Name.StartsWith(name));
-  //   }
+
 
     public ICommand PerformSearch => new Command<string>((string query) =>
     {
