@@ -6,7 +6,21 @@
 			 x:Class="BarMenuApp.Views.MenuPage"
 			 x:DataType="vm:MenuViewModel"
              HideSoftInputOnTapped="True">
-             
+    
+    
+    <ContentPage.ToolbarItems>        
+        <ToolbarItem Clicked="NavigateAddDrinksPage">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#x2B;"
+                                 FontFamily="{OnPlatform iOS=Ionicons, Android=ionicons.ttf#}"
+                                 Size="30" Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+                </ToolbarItem.IconImageSource>
+
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    
+    
     <StackLayout>
         <SearchBar x:Name="SearchBar" 
             TextChanged="SearchBar_OnTextChanged"/>
@@ -15,11 +29,11 @@
             <CollectionView ItemsSource="{Binding SearchResult}" Margin="0">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="m:Drink">
-                        <Frame Margin="5" Padding="12" >
+                        <Frame Margin="5" Padding="15" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
-                            <Label Text="{Binding Name}" FontSize="Large" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+                            <Label Text="{Binding Name}" VerticalOptions="Center" FontSize="Large" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

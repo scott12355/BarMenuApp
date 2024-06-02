@@ -20,7 +20,12 @@ public partial class MenuPage : ContentPage
 
 	private void SearchBar_OnTextChanged(object? sender, TextChangedEventArgs e)
 	{
-		SearchBar searchBar = (SearchBar)sender;
+		//SearchBar searchBar = (SearchBar)sender;
 		ViewModel.Search(SearchBar.Text);
+	}
+
+	private async void NavigateAddDrinksPage(object? sender, EventArgs e)
+	{
+		await Navigation.PushAsync(new AddDrinkPage(new AddDrinkViewModel()));
 	}
 }

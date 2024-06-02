@@ -15,7 +15,7 @@ namespace BarMenuApp
             SQLite.SQLiteOpenFlags.SharedCache; // Enable multi-threaded database access
         public static string DatabasePath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DatabaseFilename);
 
-        public const string RestUrl = "https://scott-topping.co.uk/json"; 
+        public const string RestUrl = "https://api.scott-topping.co.uk/menu"; 
 
     }
 

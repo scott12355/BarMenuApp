@@ -1,14 +1,14 @@
+using System.Text;
 using System.Text.Json;
 using BarMenuApp;
 using System.Web;
 using Newtonsoft.Json;
 public class RestDrinkMenuService
 {
-    HttpClient _client;
-    JsonSerializerOptions _serializerOptions;
+    private readonly HttpClient _client;
+    private readonly JsonSerializerOptions _serializerOptions;
     
-    
-    public List<Drink> Items { get; private set; }
+    private List<Drink> Items { get; set; }
     private string content;
     public RestDrinkMenuService()
     {
@@ -67,6 +67,24 @@ public class RestDrinkMenuService
         {
             // Throw an exception if no data was received from the API
             throw new Exception("No data received from API");
+        }
+    }
+    
+    public async Task<HttpResponseMessage> PostDrinkAsync(DrinkPostJson drink)
+    {
+        Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
+        string jsonContent = JsonConvert.SerializeObject(drink);
+        HttpContent httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+        httpContent.Headers.Add("Auth", "30112001");
+        try
+        {
+            HttpResponseMessage response = await _client.PostAsync(uri, httpContent);
+            return response;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            return null;
         }
     }
 }
